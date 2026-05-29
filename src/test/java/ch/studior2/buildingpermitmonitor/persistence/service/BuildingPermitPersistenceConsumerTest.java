@@ -5,6 +5,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.mockito.Mockito.verify;
 
 import ch.studior2.buildingpermitmonitor.contracts.event.BuildingPermitEnrichedEvent;
+import ch.studior2.buildingpermitmonitor.contracts.geocoding.GeocodingProvider;
+import ch.studior2.buildingpermitmonitor.contracts.geocoding.GeocodingQuality;
 import ch.studior2.buildingpermitmonitor.persistence.repository.BuildingPermitRepository;
 import java.time.LocalDate;
 import java.util.stream.Stream;
@@ -52,7 +54,9 @@ class BuildingPermitPersistenceConsumerTest {
                       LocalDate.of(2026, 5, 19),
                       "Eisenbahnstrasse 27",
                       47.2918,
-                      8.5631))));
+                      8.5631,
+                      GeocodingProvider.GEO_ADMIN,
+                      GeocodingQuality.ADDRESS))));
     }
   }
 }

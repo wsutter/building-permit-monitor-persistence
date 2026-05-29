@@ -6,6 +6,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import ch.studior2.buildingpermitmonitor.contracts.event.BuildingPermitEnrichedEvent;
+import ch.studior2.buildingpermitmonitor.contracts.geocoding.GeocodingProvider;
+import ch.studior2.buildingpermitmonitor.contracts.geocoding.GeocodingQuality;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -108,7 +110,9 @@ class BuildingPermitRepositoryTest {
         LocalDate.of(2026, 5, 19),
         "Eisenbahnstrasse 27",
         47.2918,
-        8.5631);
+        8.5631,
+        GeocodingProvider.GEO_ADMIN,
+        GeocodingQuality.ADDRESS);
   }
 
   private static BuildingPermitEnrichedEvent eventWithoutCoordinates() {
@@ -124,6 +128,8 @@ class BuildingPermitRepositoryTest {
         LocalDate.of(2026, 5, 20),
         "Dorfstrasse 1",
         null,
-        null);
+        null,
+        GeocodingProvider.GEO_ADMIN,
+        GeocodingQuality.ADDRESS);
   }
 }
