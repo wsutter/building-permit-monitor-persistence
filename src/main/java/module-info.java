@@ -14,7 +14,21 @@ module ch.studior2.buildingpermitmonitor.persistence {
   requires kafka.clients;
   requires tools.jackson.databind;
   requires jakarta.persistence;
+  requires org.hibernate.orm.core;
+  requires org.locationtech.jts;
+  requires org.apache.commons.lang3;
+  requires spring.data.commons;
 
+  opens ch.studior2.buildingpermitmonitor.contracts.config to
+      spring.core,
+      spring.beans,
+      spring.context;
+  opens ch.studior2.buildingpermitmonitor.persistence.consumer to
+      spring.beans,
+      spring.context,
+      spring.core;
+  opens ch.studior2.buildingpermitmonitor.persistence.entity to
+      org.apache.commons.lang3;
   opens ch.studior2.buildingpermitmonitor.persistence to
       spring.core,
       spring.beans,

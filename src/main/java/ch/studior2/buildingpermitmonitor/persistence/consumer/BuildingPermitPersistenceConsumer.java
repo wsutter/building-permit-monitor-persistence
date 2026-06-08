@@ -1,23 +1,24 @@
-package ch.studior2.buildingpermitmonitor.persistence.service;
+package ch.studior2.buildingpermitmonitor.persistence.consumer;
 
 import ch.studior2.buildingpermitmonitor.contracts.event.BuildingPermitEnrichedEvent;
 import ch.studior2.buildingpermitmonitor.contracts.group.KafkaGroupIDs;
 import ch.studior2.buildingpermitmonitor.contracts.topic.KafkaTopics;
-import ch.studior2.buildingpermitmonitor.persistence.repository.BuildingPermitRepository;
+import ch.studior2.buildingpermitmonitor.persistence.service.BuildingPermitPersistenceService;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BuildingPermitPersistenceConsumer {
 
-  private final BuildingPermitRepository repository;
+  private final BuildingPermitPersistenceService service;
 
-  public BuildingPermitPersistenceConsumer(BuildingPermitRepository repository) {
-    this.repository = repository;
+  public BuildingPermitPersistenceConsumer(BuildingPermitPersistenceService service) {
+    this.service = service;
   }
 
   @KafkaListener(topics = KafkaTopics.ENRICHED, groupId = KafkaGroupIDs.PERSISTENCE)
   public void persist(BuildingPermitEnrichedEvent event) throws Exception {
-    repository.upsert(event);
+
+    service.upsert(event);
   }
 }
