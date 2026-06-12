@@ -37,17 +37,14 @@ import org.testcontainers.utility.DockerImageName;
 class BuildingPermitRepositoryTest {
 
   private static final DockerImageName POSTGIS_IMAGE =
-      DockerImageName.parse("postgis/postgis:17-3.5")
-        .asCompatibleSubstituteFor("postgres");
+      DockerImageName.parse("postgis/postgis:17-3.5").asCompatibleSubstituteFor("postgres");
 
-  @Container
-  @ServiceConnection
+  @Container @ServiceConnection
   static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(POSTGIS_IMAGE);
 
   private final PointFactory pointFactory = new PointFactory();
 
-  @Autowired
-  private BuildingPermitRepository repository;
+  @Autowired private BuildingPermitRepository repository;
 
   @Nested
   @DisplayName("findBySourceAndExternalId")

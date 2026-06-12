@@ -19,10 +19,6 @@ module ch.studior2.buildingpermitmonitor.persistence {
   requires org.apache.commons.lang3;
   requires spring.data.commons;
 
-  opens ch.studior2.buildingpermitmonitor.contracts.config to
-      spring.core,
-      spring.beans,
-      spring.context;
   opens ch.studior2.buildingpermitmonitor.persistence.consumer to
       spring.beans,
       spring.context,
